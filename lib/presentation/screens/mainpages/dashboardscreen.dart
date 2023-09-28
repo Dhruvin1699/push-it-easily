@@ -1,6 +1,8 @@
 import 'package:figmaappnew/presentation/screens/Categories/categories.dart';
+import 'package:figmaappnew/presentation/screens/cartscreens/emptycart.dart';
 import 'package:figmaappnew/presentation/screens/mainpages/homescreen.dart';
 import 'package:figmaappnew/presentation/screens/sample.dart';
+import 'package:figmaappnew/presentation/screens/wishlist/emptywish.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -43,9 +45,9 @@ class _DashboardState extends State<Dashboard> {
 
   final List<Widget> _screens = [
      HomeScreen(),
-    CategoriesScreen()
-    // BusinessDetailsPage(),
-    // BusinessScreen(),
+    CategoriesScreen(),
+   CartEmptyScreen(),
+    WishEmptyScreen(),
   ];
 
   // Define colors for selected and unselected items

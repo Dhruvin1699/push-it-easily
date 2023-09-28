@@ -9,6 +9,7 @@ import 'package:figmaappnew/presentation/screens/mainpages/productdetails.dart';
 import 'package:figmaappnew/presentation/screens/mainpages/searchscreen.dart';
 import 'package:figmaappnew/presentation/screens/onboardScreen3.dart';
 import 'package:figmaappnew/presentation/screens/onboardscreen.dart';
+import 'package:figmaappnew/presentation/screens/sample.dart';
 import 'package:figmaappnew/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 void main(){
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProductDetailsScreen(),
+      home: CartScreen(),
     );
   }
 }

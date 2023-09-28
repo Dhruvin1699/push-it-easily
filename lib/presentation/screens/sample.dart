@@ -1,1220 +1,700 @@
-// //
-// import 'package:flutter/material.dart';
-// import 'package:expandable_text/expandable_text.dart';
-// import 'package:flutter/material.dart';
 //
-// void main() {
-//   runApp(MyApp());
-// }
-// //
-// class MyApp extends StatefulWidget {
+// import 'package:flutter/material.dart';
+// class CartScreen extends StatefulWidget {
 //   @override
-//   _MyAppState createState() => _MyAppState();
+//   _CartScreenState createState() => _CartScreenState();
 // }
 //
-// class _MyAppState extends State<MyApp> {
-//   final PageController _pageController = PageController();
-//   final List<String> imagePaths = [
-//     'images/Rectangle 9 (17).png',
-//     'images/your_image_2.png',
-//     'images/your_image_3.png',
-//     'images/your_image_4.png',
-//     'images/your_image_5.png',
-//   ];
-//   final List<String> circleTexts = [
-//     'XS',
-//     'S',
-//     'M',
-//     'L',
-//     'XL',
-//   ];
-//   int _currentPage = 0;
-//   int quantity = 1;
-//   @override
-//   void initState() {
-//     super.initState();
-//     _pageController.addListener(() {
-//       setState(() {
-//         _currentPage = _pageController.page?.round() ?? 0;
-//       });
-//     });
-//   }
-//
-//   @override
-//   void dispose() {
-//     _pageController.dispose();
-//     super.dispose();
-//   }
-//
+// class _CartScreenState extends State<CartScreen> {
 //   @override
 //   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         extendBodyBehindAppBar: true,
-//         appBar: AppBar(
-//           backgroundColor: Colors.transparent,
-//           elevation: 0,
-//           leading: Padding(
-//             padding: const EdgeInsets.all(8.0),
-//             child: IconButton(
-//               icon: Icon(Icons.arrow_back, color: Colors.black),
-//               onPressed: () {
-//                 // Handle back button press
-//               },
+//     return Scaffold(
+//       appBar: AppBar(
+//         elevation: 0,
+//         backgroundColor: Colors.transparent,
+//
+//         // Add a leading widget (back arrow)
+//         leading: IconButton(
+//           icon: Icon(Icons.arrow_back, color: Colors.black,),
+//           onPressed: () {
+//             // Navigate back when the back arrow is pressed
+//             Navigator.pop(context);
+//           },
+//         ),
+//         title: Text(
+//           'My Cart',
+//           style: TextStyle(
+//             color: Color(0xFF1B1A1A),
+//             fontSize: 16,
+//             fontFamily: 'Plus Jakarta Sans',
+//             fontWeight: FontWeight.w500,
+//             height: 1.11,
+//             letterSpacing: 0.07,
+//           ),
+//         ), // Title of the AppBar
+//         actions: [
+//           GestureDetector(
+//             // GestureDetector for custom action
+//             onTap: () {
+//               // Handle the action when it's tapped
+//               // You can replace this with your desired action
+//               print('Action Tapped');
+//             },
+//             child: Padding(
+//               padding: EdgeInsets.symmetric(horizontal: 16.0,vertical: 20),
+//               child: Text(
+//                 'Voucher Code',
+//                 textAlign: TextAlign.right,
+//                 style: TextStyle(
+//                   color: Color(0xFF21D4B4),
+//                   fontSize: 14,
+//                   fontFamily: 'Plus Jakarta Sans',
+//                   fontWeight: FontWeight.w500,
+//                   height: 1.11,
+//                   letterSpacing: 0.07,
+//                 ),
+//               ), // Replace 'some_icon' with your desired icon
 //             ),
 //           ),
-//           actions: [
-//             Padding(
-//               padding: const EdgeInsets.all(8.0),
-//               child: IconButton(
-//                 icon: Image.asset('images/wishlist.png'),
-//                 onPressed: () {
-//                   // Implement liked button functionality
-//                 },
-//               ),
-//             ),
-//           ],
-//         ),
-//         body: SingleChildScrollView(
+//         ],
+//       ),
+//         body: Center(
 //           child: Column(
 //             children: [
+//               // Shopping cart item
 //               Container(
-//                 height: 270,
-//                 child: Stack(
-//                   alignment: Alignment.bottomCenter,
+//                 margin: EdgeInsets.all(0.0),
+//                 padding: EdgeInsets.all(10.0),
+//                 child: Row(
 //                   children: [
-//                     // PageView of Images
-//                     PageView.builder(
-//                       controller: _pageController,
-//                       itemCount: imagePaths.length,
-//                       itemBuilder: (context, index) {
-//                         return Container(
-//                           width: double.infinity,
-//                           height: 200,
-//                           child: Image.asset(
-//                             imagePaths[index],
-//                             fit: BoxFit.cover,
-//                             width: double.infinity,
-//                             height: double.infinity,
-//                           ),
-//                         );
-//                       },
-//                     ),
-//                     // Horizontal Scroll Indicator
+//                     // Left side - Image
 //                     Container(
-//                       width: 100,
-//                       padding: const EdgeInsets.all(5),
-//                       decoration: ShapeDecoration(
-//                         color: Color(0xFFF4F5FD),
-//                         shape: RoundedRectangleBorder(
-//                           borderRadius: BorderRadius.circular(12),
-//                         ),
-//                       ),
-//                       margin: EdgeInsets.only(bottom: 20.0),
-//                       child: Row(
-//                         mainAxisAlignment: MainAxisAlignment.center,
-//                         children: List.generate(
-//                           imagePaths.length,
-//                           (index) => Padding(
-//                             padding: const EdgeInsets.all(4.0),
-//                             child: Container(
-//                               width: 10,
-//                               height: 10,
-//                               decoration: BoxDecoration(
-//                                 shape: BoxShape.circle,
-//                                 color: _currentPage == index
-//                                     ? Colors.red
-//                                     : Colors.black,
+//                       width: 100.0,
+//                       height: 100.0,
+//                       color: Colors.transparent,
+//                       child: Image.asset(
+//                         'images/Rectangle 9 (13).png',
+//                         width: double.maxFinite,
+//                         fit: BoxFit.cover,
+//                       ), // Replace with your image widget here
+//                     ),
+//                     SizedBox(width: 16.0), // Add some spacing between image and text
+//
+//                     // Right side - Text and Checkbox
+//                     Expanded(
+//                       child: Container(
+//                         child: Column(
+//                           crossAxisAlignment: CrossAxisAlignment.start,
+//                           children: [
+//                             Text(
+//                               'Loop Silicone Strong Magnetic Watch',
+//                               style: TextStyle(
+//                                 color: Color(0xFF1B1A1A),
+//                                 fontSize: 14,
+//                                 fontFamily: 'Plus Jakarta Sans',
+//                                 fontWeight: FontWeight.w500,
+//                                 height: 1.11,
+//                                 letterSpacing: 0.07,
+//                               ),
+//                               maxLines: 2, // Set the maximum number of lines
+//                               overflow: TextOverflow.ellipsis, // Handle text overflow with ellipsis (...) if needed
+//                             ),
+//                             Text(
+//                               '\$15.25',
+//                               style: TextStyle(
+//                                 color: Color(0xFF1B1A1A),
+//                                 fontSize: 12,
+//                                 fontFamily: 'Plus Jakarta Sans',
+//                                 fontWeight: FontWeight.w600,
+//                                 height: 0,
+//                                 letterSpacing: 0.06,
 //                               ),
 //                             ),
-//                           ),
+//                             Text(
+//                               '\$20.00',
+//                               style: TextStyle(
+//                                 color: Color(0xFF6F7384),
+//                                 fontSize: 10,
+//                                 fontFamily: 'Plus Jakarta Sans',
+//                                 fontWeight: FontWeight.w400,
+//                                 decoration: TextDecoration.lineThrough,
+//                                 height: 0,
+//                                 letterSpacing: 0.15,
+//                               ),
+//                             ),
+//                             Row(
+//                               mainAxisAlignment: MainAxisAlignment.start, // Align children horizontally
+//                               children: [
+//                                 IconButton(
+//                                   icon: Icon(Icons.remove),
+//                                   onPressed: () {
+//                                     // Handle decrement logic here
+//                                   },
+//                                 ),
+//                                 Text(
+//                                   '1', // Replace with your cart item count
+//                                   style: TextStyle(
+//                                     fontSize: 16,
+//                                     fontWeight: FontWeight.bold,
+//                                   ),
+//                                 ),
+//                                 IconButton(
+//                                   icon: Icon(Icons.add),
+//                                   onPressed: () {
+//                                     // Handle increment logic here
+//                                   },
+//                                 ),
+//                               ],
+//                             ),
+//
+//
+//
+//                           ],
 //                         ),
 //                       ),
 //                     ),
+//
 //                   ],
 //                 ),
 //               ),
-//               Container(
-//                 height: 600,
-//                 decoration: ShapeDecoration(
-//                   color: Colors.black.withOpacity(0.5),
-//                   shape: RoundedRectangleBorder(
-//                     borderRadius: BorderRadius.only(
-//                       topLeft: Radius.circular(32),
-//                       topRight: Radius.circular(32),
-//                     ),
-//                   ),
-//                 ),
-//
-//                 padding: EdgeInsets.all(16.0),
-//                 // color: Colors.black.withOpacity(0.5),
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     // First Row with Circular Borders
-//                     Row(
-//                       children: [
-//                         Container(
-//                           width: 62,
-//                           height: 24,
-//                           padding: const EdgeInsets.all(6),
-//                           decoration: ShapeDecoration(
-//                             color: Color(0xFF1F8BDA),
-//                             shape: RoundedRectangleBorder(
-//                                 borderRadius: BorderRadius.circular(8)),
-//                           ),
-//                           child: Row(
-//                             mainAxisSize: MainAxisSize.min,
-//                             mainAxisAlignment: MainAxisAlignment.center,
-//                             crossAxisAlignment: CrossAxisAlignment.center,
-//                             children: [
-//                               Text(
-//                                 'Top Rated',
-//                                 style: TextStyle(
-//                                   color: Colors.white,
-//                                   fontSize: 10,
-//                                   fontFamily: 'Plus Jakarta Sans',
-//                                   fontWeight: FontWeight.w600,
-//                                   height: 0,
-//                                   letterSpacing: 0.15,
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-//                         SizedBox(width: 8.0),
-//                         Container(
-//                           width: 81,
-//                           height: 24,
-//                           padding: const EdgeInsets.all(6),
-//                           decoration: ShapeDecoration(
-//                             color: Color(0xFF08E488),
-//                             shape: RoundedRectangleBorder(
-//                                 borderRadius: BorderRadius.circular(8)),
-//                           ),
-//                           child: Row(
-//                             mainAxisSize: MainAxisSize.min,
-//                             mainAxisAlignment: MainAxisAlignment.center,
-//                             crossAxisAlignment: CrossAxisAlignment.center,
-//                             children: [
-//                               Text(
-//                                 'Free Shipping',
-//                                 style: TextStyle(
-//                                   color: Colors.white,
-//                                   fontSize: 10,
-//                                   fontFamily: 'Plus Jakarta Sans',
-//                                   fontWeight: FontWeight.w600,
-//                                   height: 0,
-//                                   letterSpacing: 0.15,
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
-//                         )
-//                       ],
-//                     ),
-//                     SizedBox(height: 16.0),
-//                     // Second Row with Two Lines
-//                     Row(
-//                       children: [
-//                         Expanded(
-//                           child: Column(
-//                             mainAxisAlignment: MainAxisAlignment.start,
-//                             children: [
-//                               SizedBox(
-//                                 width: 253,
-//                                 child: Text(
-//                                   'Loop Silicone Strong Magnetic watch',
-//                                   style: TextStyle(
-//                                     color: Color(0xFF1B1A1A),
-//                                     fontSize: 18,
-//                                     fontFamily: 'Plus Jakarta Sans',
-//                                     fontWeight: FontWeight.w700,
-//                                     height: 0,
-//                                     letterSpacing: 0.04,
-//                                   ),
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-//                         SizedBox(width: 16.0),
-//                         Expanded(
-//                           child: Column(
-//                             mainAxisAlignment: MainAxisAlignment.end,
-//                             children: [
-//                               Padding(
-//                                 padding: const EdgeInsets.only(left: 112.0),
-//                                 child: Text(
-//                                   '\$ 15.25',
-//                                   style: TextStyle(
-//                                     color: Color(0xFF1B1A1A),
-//                                     fontSize: 18,
-//                                     fontFamily: 'Plus Jakarta Sans',
-//                                     fontWeight: FontWeight.w700,
-//                                     height: 0,
-//                                     letterSpacing: 0.04,
-//                                   ),
-//                                 ),
-//                               ),
-//                               Padding(
-//                                 padding: const EdgeInsets.only(left: 112.0),
-//                                 child: Text(
-//                                   '\$ 20.00',
-//                                   style: TextStyle(
-//                                     color: Color(0xFF6F7384),
-//                                     fontSize: 14,
-//                                     fontFamily: 'Plus Jakarta Sans',
-//                                     fontWeight: FontWeight.w400,
-//                                     decoration: TextDecoration.lineThrough,
-//                                     height: 1.11,
-//                                     letterSpacing: 0.07,
-//                                   ),
-//                                 ),
-//                               )
-//                             ],
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                     SizedBox(
-//                       height: 10,
-//                     ),
-//                     Row(
-//                       children: [
-//                         Row(
-//                           children: List.generate(
-//                             4,
-//                             (index) => Icon(
-//                               Icons.star,
-//                               color: Colors.yellow,
-//                               size: 20.0,
-//                             ),
-//                           ),
-//                         ),
-//                         SizedBox(
-//                           width: 5,
-//                         ),
-//                         Text(
-//                           '4.5 (2,495 reviews) ',
-//                           style: TextStyle(
-//                             color: Color(0xFF1B1A1A),
-//                             fontSize: 10,
-//                             fontFamily: 'Plus Jakarta Sans',
-//                             fontWeight: FontWeight.w600,
-//                             height: 0,
-//                             letterSpacing: 0.15,
-//                           ),
-//                         )
-//                       ],
-//                     ),
-//                     ExpandableText(
-//                       'Constructed with high-quality silicone material, the Loop Silicone Strong Magnetic Watch ensures a comfortable and secure fit on your wrist. The soft and flexible silicone is gentle on the skin, making it ideal for extended wear. Its lightweight design allows for a seamless blend of comfort and durability.\n\nOne of the standout features of this watch band is its strong magnetic closure. The powerful magnets embedded within the band provide a secure and reliable connection, ensuring that your smartwatch stays firmly in place throughout the day. Say goodbye to worries about accidental detachment or slippage - the magnetic closure offers a peace of mind for active individuals on the go.\n\nThe Loop Silicone Strong Magnetic Watch Band is highly versatile, compatible with a wide range of smartwatch models. Its adjustable strap length allows for a customizable fit, catering to various wrist sizes. Whether you are engaging in intense workouts or attending formal occasions, this watch band effortlessly adapts to your style and activity level.',
-//                       expandText: 'Read more',
-//                       collapseText: 'Read less',
-//                       maxLines: 4, // Initial number of lines to display
-//                       style: TextStyle(
-//                         color: Color(0xFF6F7384),
-//                         fontSize: 14,
-//                         fontFamily: 'Plus Jakarta Sans',
-//                         fontWeight: FontWeight.w400,
-//                         height: 1.11,
-//                         letterSpacing: 0.07,
-//                       ),
-//                     ),
-//                     SizedBox(
-//                       height: 20,
-//                     ),
-//                     SizedBox(
-//                       width: 50,
-//                       child: Text(
-//                         'Color',
-//                         style: TextStyle(
-//                           color: Color(0xFF1B1A1A),
-//                           fontSize: 12,
-//                           fontFamily: 'Plus Jakarta Sans',
-//                           fontWeight: FontWeight.w600,
-//                           height: 0,
-//                           letterSpacing: 0.06,
-//                         ),
-//                       ),
-//                     ),
-//                     SizedBox(height: 15,),
-//                     Container(
-//                         height: 40.0,
-//                         child: ListView.builder(
-//                             scrollDirection: Axis.horizontal,
-//                             itemCount: 5,
-//                             itemBuilder: (context, index) {
-//                               // Define different colors for each circle
-//                               List<Color> circleColors = [
-//                                 Colors.red,
-//                                 Colors.blue,
-//                                 Colors.green,
-//                                 Colors.orange,
-//                                 Colors.purple,
-//                               ];
-//
-//                               return Container(
-//                                 margin: EdgeInsets.only(right: 10.0),
-//                                 width: 40.0,
-//                                 height: 40.0,
-//                                 decoration: BoxDecoration(
-//                                   shape: BoxShape.circle,
-//                                   color: circleColors[index],
-//                                 ),
-//                               );
-//                             })),
-//                     SizedBox(
-//                       height: 20,
-//                     ),
-//                     SizedBox(
-//                       width: 50,
-//                       child: Text(
-//                         'Size',
-//                         style: TextStyle(
-//                           color: Color(0xFF1B1A1A),
-//                           fontSize: 12,
-//                           fontFamily: 'Plus Jakarta Sans',
-//                           fontWeight: FontWeight.w600,
-//                           height: 0,
-//                           letterSpacing: 0.06,
-//                         ),
-//                       ),
-//                     ),
-//           Container(
-//             height: 40.0,
-//             child: ListView.builder(
-//               scrollDirection: Axis.horizontal,
-//               itemCount: 5,
-//               itemBuilder: (context, index) {
-//                 return Container(
-//                   margin: EdgeInsets.only(right: 10.0),
-//                   width: 40.0,
-//                   height: 40.0,
-//                   decoration: ShapeDecoration(
-//                     color: Colors.white,
-//                     shape: RoundedRectangleBorder(
-//                       side: BorderSide(width: 1, color: Color(0xFFF4F5FD)),
-//                       borderRadius: BorderRadius.circular(1000),
-//                     ),
-//                   ),
-//                   child: Center(
-//                     child: Text(
-//                       circleTexts[index],
-//                       style: TextStyle(
-//                         color: Colors.black,
-//                       ),
-//                     ),
-//                   ),
-//                 );
-//               },
-//             ),
-//           ),
-//                     SizedBox(height: 15,),
-//                     Text(
-//                       'Quantity',
-//                       style: TextStyle(
-//                         color: Color(0xFF1B1A1A),
-//                         fontSize: 12,
-//                         fontFamily: 'Plus Jakarta Sans',
-//                         fontWeight: FontWeight.w600,
-//                         height: 0,
-//                         letterSpacing: 0.06,
-//                       ),
-//                     ),
-//                     Row(
-//                       children: [
-//
-//                         IconButton(
-//                           icon: Icon(Icons.remove),
-//                           onPressed: () {
-//                             // Implement decrement logic
-//                           },
-//                         ),
-//                         Text(
-//                           quantity.toString(),
-//                           style: TextStyle(
-//                             fontSize: 18.0,
-//                             color: Color(0xFF1B1A1A),
-//                             fontFamily: 'Plus Jakarta Sans',
-//                             fontWeight: FontWeight.w700,
-//                             letterSpacing: 0.04,
-//                           ),
-//                         ),
-//                         IconButton(
-//                           icon: Icon(Icons.add),
-//                           onPressed: () {
-//                             // Implement increment logic
-//                           },
-//                         ),
-//                       ],
-//                     ),
-//                     Row(
-//                       children: [
-//                         Expanded(
-//                           child: Container(
-//                             height: 50,
-//                             margin: EdgeInsets.all(8.0),
-//                             child: ElevatedButton(
-//                               onPressed: () {
-//                                 // Handle the first button press
-//                               },
-//                               style: ElevatedButton.styleFrom(
-//                                 primary: Colors.white, // White background
-//                                 onPrimary: Colors.black, // Black text
-//                                 side: BorderSide(width: 1, color: Colors.grey), // 1-width border
-//                               ),
-//                               child: Text(
-//                                 'Buy Now',
-//                                 style: TextStyle(
-//                                   color: Color(0xFF1C1B1B),
-//                                   fontSize: 14,
-//                                   fontFamily: 'Plus Jakarta Sans',
-//                                   fontWeight: FontWeight.w600,
-//                                   height: 0,
-//                                 ),
-//                               )
-//                             ),
-//                           ),
-//                         ),
-//                         Expanded(
-//                           child: Container(
-//                             height: 50,
-//                             margin: EdgeInsets.all(10.0),
-//                             child: ElevatedButton(
-//                               onPressed: () {
-//                                 // Handle the button press
-//                               },
-//                               style: ElevatedButton.styleFrom(
-//                                 primary: Colors.black, // Black background
-//                                 onPrimary: Colors.white, // White text
-//                                 side: BorderSide(width: 1, color: Colors.black), // 1-width border
-//                               ),
-//                               child: Row(
-//                                 mainAxisSize: MainAxisSize.min,
-//                                 children: [
-//                                   Text(
-//                                     'Add To Cart',
-//                                     style: TextStyle(
-//                                       color: Colors.white,
-//                                       fontSize: 14,
-//                                       fontFamily: 'Plus Jakarta Sans',
-//                                       fontWeight: FontWeight.w600,
-//                                       height: 0,
-//                                     ),
-//                                   ),
-//                               SizedBox(width: 8),
-//                                   Image.asset(
-//                                     'images/shopping-cart.png', // Replace with your custom image path
-//                                     width: 24, // Adjust the width as needed
-//                                     height: 24, // Adjust the height as needed
-//                                   ),
-//                                   // Add some spacing between the image and text
-//
-//                                 ],
-//                               ),
-//                             ),
-//                           ),
-//                           ),
-//
-//                       ],
-//                     )
-//
-//
-//
-//                   ]),
-//               ),
+//               // Add more shopping cart items as needed...
 //             ],
 //           ),
-//         ),
-//       ),
+//         )
+//
+//
+//
 //     );
 //   }
 // }
-//
-// import 'package:flutter/material.dart';
-// import 'package:expandable_text/expandable_text.dart';
 //
 // void main() {
-//   runApp(MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         body: ProductDetailsScreen(),
-//       ),
-//     );
-//   }
-// }
-//
-// class ProductDetailsScreen extends StatefulWidget {
-//   @override
-//   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
-// }
-//
-// class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-//   final PageController _pageController = PageController();
-//   final List<String> imagePaths = [
-//     'images/Rectangle 9 (17).png',
-//     'images/your_image_2.png',
-//     'images/your_image_3.png',
-//     'images/your_image_4.png',
-//     'images/your_image_5.png',
-//   ];
-//   final List<String> circleTexts = [
-//     'XS',
-//     'S',
-//     'M',
-//     'L',
-//     'XL',
-//   ];
-//   int _currentPage = 0;
-//   int quantity = 1;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _pageController.addListener(() {
-//       setState(() {
-//         _currentPage = _pageController.page?.round() ?? 0;
-//       });
-//     });
-//   }
-//
-//   @override
-//   void dispose() {
-//     _pageController.dispose();
-//     super.dispose();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return CustomScrollView(
-//       slivers: [
-//         SliverAppBar(
-//           expandedHeight: 270.0,
-//           elevation: 0,
-//           floating: false,
-//           pinned: false,
-//           backgroundColor: Colors.transparent,
-//           flexibleSpace: FlexibleSpaceBar(
-//            // title: Text('Product Details'),
-//             background: Stack(
-//               alignment: Alignment.bottomCenter,
-//               children: [
-//                 PageView.builder(
-//                   controller: _pageController,
-//                   itemCount: imagePaths.length,
-//                   itemBuilder: (context, index) {
-//                     return Image.asset(
-//                       imagePaths[index],
-//                       fit: BoxFit.cover,
-//                       width: double.infinity,
-//                       height: 270.0,
-//                     );
-//                   },
-//                 ),
-//                 Container(
-//                   width: 100,
-//                   padding: const EdgeInsets.all(5),
-//                   decoration: ShapeDecoration(
-//                     color: Color(0xFFF4F5FD),
-//                     shape: RoundedRectangleBorder(
-//                       borderRadius: BorderRadius.circular(12),
-//                     ),
-//                   ),
-//                   margin: EdgeInsets.only(bottom: 20.0),
-//                   child: Row(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: List.generate(
-//                       imagePaths.length,
-//                           (index) => Padding(
-//                         padding: const EdgeInsets.all(4.0),
-//                         child: Container(
-//                           width: 10,
-//                           height: 10,
-//                           decoration: BoxDecoration(
-//                             shape: BoxShape.circle,
-//                             color: _currentPage == index
-//                                 ? Colors.red
-//                                 : Colors.black,
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//         SliverToBoxAdapter(
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               // Rest of your content here
-//               // ...
-//               Container(
-//                 height: 810,
-//                 decoration: ShapeDecoration(
-//                   color: Colors.transparent,
-//                   shape: RoundedRectangleBorder(
-//                     borderRadius: BorderRadius.only(
-//                       topLeft: Radius.circular(32),
-//                       topRight: Radius.circular(32),
-//                     ),
-//                   ),
-//                 ),
-//
-//                 padding: EdgeInsets.all(16.0),
-//                 // color: Colors.black.withOpacity(0.5),
-//                 child: Column(
-//                     crossAxisAlignment: CrossAxisAlignment.start,
-//                     children: [
-//                       // First Row with Circular Borders
-//                       Row(
-//                         children: [
-//                           Container(
-//                             width: 62,
-//                             height: 24,
-//                             padding: const EdgeInsets.all(6),
-//                             decoration: ShapeDecoration(
-//                               color: Color(0xFF1F8BDA),
-//                               shape: RoundedRectangleBorder(
-//                                   borderRadius: BorderRadius.circular(8)),
-//                             ),
-//                             child: Row(
-//                               mainAxisSize: MainAxisSize.min,
-//                               mainAxisAlignment: MainAxisAlignment.center,
-//                               crossAxisAlignment: CrossAxisAlignment.center,
-//                               children: [
-//                                 Text(
-//                                   'Top Rated',
-//                                   style: TextStyle(
-//                                     color: Colors.white,
-//                                     fontSize: 10,
-//                                     fontFamily: 'Plus Jakarta Sans',
-//                                     fontWeight: FontWeight.w600,
-//                                     height: 0,
-//                                     letterSpacing: 0.15,
-//                                   ),
-//                                 ),
-//                               ],
-//                             ),
-//                           ),
-//                           SizedBox(width: 8.0),
-//                           Container(
-//                             width: 81,
-//                             height: 24,
-//                             padding: const EdgeInsets.all(6),
-//                             decoration: ShapeDecoration(
-//                               color: Color(0xFF08E488),
-//                               shape: RoundedRectangleBorder(
-//                                   borderRadius: BorderRadius.circular(8)),
-//                             ),
-//                             child: Row(
-//                               mainAxisSize: MainAxisSize.min,
-//                               mainAxisAlignment: MainAxisAlignment.center,
-//                               crossAxisAlignment: CrossAxisAlignment.center,
-//                               children: [
-//                                 Text(
-//                                   'Free Shipping',
-//                                   style: TextStyle(
-//                                     color: Colors.white,
-//                                     fontSize: 10,
-//                                     fontFamily: 'Plus Jakarta Sans',
-//                                     fontWeight: FontWeight.w600,
-//                                     height: 0,
-//                                     letterSpacing: 0.15,
-//                                   ),
-//                                 ),
-//                               ],
-//                             ),
-//                           )
-//                         ],
-//                       ),
-//                       SizedBox(height: 16.0),
-//                       // Second Row with Two Lines
-//                       Row(
-//                         children: [
-//                           Expanded(
-//                             child: Column(
-//                               mainAxisAlignment: MainAxisAlignment.start,
-//                               children: [
-//                                 SizedBox(
-//                                   width: 253,
-//                                   child: Text(
-//                                     'Loop Silicone Strong Magnetic watch',
-//                                     style: TextStyle(
-//                                       color: Color(0xFF1B1A1A),
-//                                       fontSize: 18,
-//                                       fontFamily: 'Plus Jakarta Sans',
-//                                       fontWeight: FontWeight.w700,
-//                                       height: 0,
-//                                       letterSpacing: 0.04,
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ],
-//                             ),
-//                           ),
-//                           SizedBox(width: 16.0),
-//                           Expanded(
-//                             child: Column(
-//                               mainAxisAlignment: MainAxisAlignment.end,
-//                               children: [
-//                                 Padding(
-//                                   padding: const EdgeInsets.only(left: 112.0),
-//                                   child: Text(
-//                                     '\$ 15.25',
-//                                     style: TextStyle(
-//                                       color: Color(0xFF1B1A1A),
-//                                       fontSize: 18,
-//                                       fontFamily: 'Plus Jakarta Sans',
-//                                       fontWeight: FontWeight.w700,
-//                                       height: 0,
-//                                       letterSpacing: 0.04,
-//                                     ),
-//                                   ),
-//                                 ),
-//                                 Padding(
-//                                   padding: const EdgeInsets.only(left: 112.0),
-//                                   child: Text(
-//                                     '\$ 20.00',
-//                                     style: TextStyle(
-//                                       color: Color(0xFF6F7384),
-//                                       fontSize: 14,
-//                                       fontFamily: 'Plus Jakarta Sans',
-//                                       fontWeight: FontWeight.w400,
-//                                       decoration: TextDecoration.lineThrough,
-//                                       height: 1.11,
-//                                       letterSpacing: 0.07,
-//                                     ),
-//                                   ),
-//                                 )
-//                               ],
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                       SizedBox(
-//                         height: 10,
-//                       ),
-//                       Row(
-//                         children: [
-//                           Row(
-//                             children: List.generate(
-//                               4,
-//                                   (index) => Icon(
-//                                 Icons.star,
-//                                 color: Colors.yellow,
-//                                 size: 20.0,
-//                               ),
-//                             ),
-//                           ),
-//                           SizedBox(
-//                             width: 5,
-//                           ),
-//                           Text(
-//                             '4.5 (2,495 reviews) ',
-//                             style: TextStyle(
-//                               color: Color(0xFF1B1A1A),
-//                               fontSize: 10,
-//                               fontFamily: 'Plus Jakarta Sans',
-//                               fontWeight: FontWeight.w600,
-//                               height: 0,
-//                               letterSpacing: 0.15,
-//                             ),
-//                           )
-//                         ],
-//                       ),
-//                       ExpandableText(
-//                         'Constructed with high-quality silicone material, the Loop Silicone Strong Magnetic Watch ensures a comfortable and secure fit on your wrist. The soft and flexible silicone is gentle on the skin, making it ideal for extended wear. Its lightweight design allows for a seamless blend of comfort and durability.\n\nOne of the standout features of this watch band is its strong magnetic closure. The powerful magnets embedded within the band provide a secure and reliable connection, ensuring that your smartwatch stays firmly in place throughout the day. Say goodbye to worries about accidental detachment or slippage - the magnetic closure offers a peace of mind for active individuals on the go.\n\nThe Loop Silicone Strong Magnetic Watch Band is highly versatile, compatible with a wide range of smartwatch models. Its adjustable strap length allows for a customizable fit, catering to various wrist sizes. Whether you are engaging in intense workouts or attending formal occasions, this watch band effortlessly adapts to your style and activity level.',
-//                         expandText: 'Read more',
-//                         collapseText: 'Read less',
-//                         maxLines: 4, // Initial number of lines to display
-//                         style: TextStyle(
-//                           color: Color(0xFF6F7384),
-//                           fontSize: 14,
-//                           fontFamily: 'Plus Jakarta Sans',
-//                           fontWeight: FontWeight.w400,
-//                           height: 1.11,
-//                           letterSpacing: 0.07,
-//                         ),
-//                       ),
-//                       SizedBox(
-//                         height: 20,
-//                       ),
-//                       SizedBox(
-//                         width: 50,
-//                         child: Text(
-//                           'Color',
-//                           style: TextStyle(
-//                             color: Color(0xFF1B1A1A),
-//                             fontSize: 12,
-//                             fontFamily: 'Plus Jakarta Sans',
-//                             fontWeight: FontWeight.w600,
-//                             height: 0,
-//                             letterSpacing: 0.06,
-//                           ),
-//                         ),
-//                       ),
-//                       SizedBox(height: 15,),
-//                       Container(
-//                           height: 40.0,
-//                           child: ListView.builder(
-//                               scrollDirection: Axis.horizontal,
-//                               itemCount: 5,
-//                               itemBuilder: (context, index) {
-//                                 // Define different colors for each circle
-//                                 List<Color> circleColors = [
-//                                   Colors.red,
-//                                   Colors.blue,
-//                                   Colors.green,
-//                                   Colors.orange,
-//                                   Colors.purple,
-//                                 ];
-//
-//                                 return Container(
-//                                   margin: EdgeInsets.only(right: 10.0),
-//                                   width: 40.0,
-//                                   height: 40.0,
-//                                   decoration: BoxDecoration(
-//                                     shape: BoxShape.circle,
-//                                     color: circleColors[index],
-//                                   ),
-//                                 );
-//                               })),
-//                       SizedBox(
-//                         height: 20,
-//                       ),
-//                       SizedBox(
-//                         width: 50,
-//                         child: Text(
-//                           'Size',
-//                           style: TextStyle(
-//                             color: Color(0xFF1B1A1A),
-//                             fontSize: 12,
-//                             fontFamily: 'Plus Jakarta Sans',
-//                             fontWeight: FontWeight.w600,
-//                             height: 0,
-//                             letterSpacing: 0.06,
-//                           ),
-//                         ),
-//                       ),
-//                       Container(
-//                         height: 40.0,
-//                         child: ListView.builder(
-//                           scrollDirection: Axis.horizontal,
-//                           itemCount: 5,
-//                           itemBuilder: (context, index) {
-//                             return Container(
-//                               margin: EdgeInsets.only(right: 10.0),
-//                               width: 40.0,
-//                               height: 40.0,
-//                               decoration: ShapeDecoration(
-//                                 color: Colors.white,
-//                                 shape: RoundedRectangleBorder(
-//                                   side: BorderSide(width: 1, color: Color(0xFFF4F5FD)),
-//                                   borderRadius: BorderRadius.circular(1000),
-//                                 ),
-//                               ),
-//                               child: Center(
-//                                 child: Text(
-//                                   circleTexts[index],
-//                                   style: TextStyle(
-//                                     color: Colors.black,
-//                                   ),
-//                                 ),
-//                               ),
-//                             );
-//                           },
-//                         ),
-//                       ),
-//                       SizedBox(height: 15,),
-//                       Text(
-//                         'Quantity',
-//                         style: TextStyle(
-//                           color: Color(0xFF1B1A1A),
-//                           fontSize: 12,
-//                           fontFamily: 'Plus Jakarta Sans',
-//                           fontWeight: FontWeight.w600,
-//                           height: 0,
-//                           letterSpacing: 0.06,
-//                         ),
-//                       ),
-//                       Row(
-//                         children: [
-//
-//                           IconButton(
-//                             icon: Icon(Icons.remove),
-//                             onPressed: () {
-//                               // Implement decrement logic
-//                             },
-//                           ),
-//                           Text(
-//                             quantity.toString(),
-//                             style: TextStyle(
-//                               fontSize: 18.0,
-//                               color: Color(0xFF1B1A1A),
-//                               fontFamily: 'Plus Jakarta Sans',
-//                               fontWeight: FontWeight.w700,
-//                               letterSpacing: 0.04,
-//                             ),
-//                           ),
-//                           IconButton(
-//                             icon: Icon(Icons.add),
-//                             onPressed: () {
-//                               // Implement increment logic
-//                             },
-//                           ),
-//                         ],
-//                       ),
-//                       Row(
-//                         children: [
-//                           Expanded(
-//                             child: Container(
-//                               height: 50,
-//                               margin: EdgeInsets.all(8.0),
-//                               child: ElevatedButton(
-//                                   onPressed: () {
-//                                     // Handle the first button press
-//                                   },
-//                                   style: ElevatedButton.styleFrom(
-//                                     primary: Colors.white, // White background
-//                                     onPrimary: Colors.black, // Black text
-//                                     side: BorderSide(width: 1, color: Colors.grey), // 1-width border
-//                                   ),
-//                                   child: Text(
-//                                     'Buy Now',
-//                                     style: TextStyle(
-//                                       color: Color(0xFF1C1B1B),
-//                                       fontSize: 14,
-//                                       fontFamily: 'Plus Jakarta Sans',
-//                                       fontWeight: FontWeight.w600,
-//                                       height: 0,
-//                                     ),
-//                                   )
-//                               ),
-//                             ),
-//                           ),
-//                           Expanded(
-//                             child: Container(
-//                               height: 50,
-//                               margin: EdgeInsets.all(10.0),
-//                               child: ElevatedButton(
-//                                 onPressed: () {
-//                                   // Handle the button press
-//                                 },
-//                                 style: ElevatedButton.styleFrom(
-//                                   primary: Colors.black, // Black background
-//                                   onPrimary: Colors.white, // White text
-//                                   side: BorderSide(width: 1, color: Colors.black), // 1-width border
-//                                 ),
-//                                 child: Row(
-//                                   mainAxisSize: MainAxisSize.min,
-//                                   children: [
-//                                     Text(
-//                                       'Add To Cart',
-//                                       style: TextStyle(
-//                                         color: Colors.white,
-//                                         fontSize: 14,
-//                                         fontFamily: 'Plus Jakarta Sans',
-//                                         fontWeight: FontWeight.w600,
-//                                         height: 0,
-//                                       ),
-//                                     ),
-//                                     SizedBox(width: 8),
-//                                     Image.asset(
-//                                       'images/shopping-cart.png', // Replace with your custom image path
-//                                       width: 24, // Adjust the width as needed
-//                                       height: 24, // Adjust the height as needed
-//                                     ),
-//                                     // Add some spacing between the image and text
-//
-//                                   ],
-//                                 ),
-//                               ),
-//                             ),
-//                           ),
-//
-//                         ],
-//                       )
-//
-//
-//
-//                     ]),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ],
-//     );
-//   }
+//   MaterialApp(
+//     home: CartScreen(),
+//   );
 // }
 
+import 'package:flutter/material.dart';
 
-// import 'package:flutter/material.dart';
-// import 'package:expandable_text/expandable_text.dart';
-//
-// void main() {
-//   runApp(MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         body: ProductDetailsScreen(),
-//       ),
-//     );
-//   }
-// }
+class CartScreen extends StatefulWidget {
+  @override
+  _CartScreenState createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text(
+          'My Cart',
+          style: TextStyle(
+            color: Color(0xFF1B1A1A),
+            fontSize: 16,
+            fontFamily: 'Plus Jakarta Sans',
+            fontWeight: FontWeight.w500,
+            height: 1.11,
+            letterSpacing: 0.07,
+          ),
+        ),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              print('Action Tapped');
+            },
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
+              child: Text(
+                'Voucher Code',
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  color: Color(0xFF21D4B4),
+                  fontSize: 14,
+                  fontFamily: 'Plus Jakarta Sans',
+                  fontWeight: FontWeight.w500,
+                  height: 1.11,
+                  letterSpacing: 0.07,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.all(0.0),
+              padding: EdgeInsets.all(8.0),
+              child: Stack(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Left side - Image
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          width: 100.0,
+                          height: 100.0,
+                          color: Colors.transparent,
+                          child: Image.asset(
+                            'images/Rectangle 9 (13).png',
+                            width: double.maxFinite,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 16.0),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 0.0),
+                                  child: Text(
+                                    'Loop Silicone Strong Magnetic Watch',
+                                    style: TextStyle(
+                                      color: Color(0xFF1B1A1A),
+                                      fontSize: 14,
+                                      fontFamily: 'Plus Jakarta Sans',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.11,
+                                      letterSpacing: 0.07,
+                                    ),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                SizedBox(width: 8.0),
+                              ],
+                            ),
+                            SizedBox(height: 10,
+                            ),
+                            Text(
+                              '\$15.25',
+                              style: TextStyle(
+                                color: Color(0xFF1B1A1A),
+                                fontSize: 12,
+                                fontFamily: 'Plus Jakarta Sans',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                                letterSpacing: 0.06,
+                              ),
+                            ),
+                            SizedBox(height: 10,
+                            ),
+                            Text(
+                              '\$20.00',
+                              style: TextStyle(
+                                color: Color(0xFF6F7384),
+                                fontSize: 10,
+                                fontFamily: 'Plus Jakarta Sans',
+                                fontWeight: FontWeight.w400,
+                                decoration: TextDecoration.lineThrough,
+                                height: 0,
+                                letterSpacing: 0.15,
+                              ),
+                            ),
+                            SizedBox(height: 10,),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  // Handle decrement logic here
+                                },
+                                child: Container(
+                                  width: 120,
+                                  height: 40,
+                                  // : Colors.blue,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        Icons.remove,
+                                        color: Colors.black,
+                                      ),
+                                      SizedBox(width: 8,),
+                                      Text(
+                                        '1',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      SizedBox(width:8),
+                                      Icon(
+                                        Icons.add,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 0,left:10),
+                      child: Checkbox(
+                        value: true,
+                        onChanged: (newValue) {
+                          // Handle checkbox state change
+                          // You can implement your logic here
+                        },
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 70.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          // Handle delete logic here
+                        },
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
 
 
-// import 'package:flutter/material.dart';
-// import 'package:expandable_text/expandable_text.dart';
-//
-// void main() {
-//   runApp(MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         body: ProductDetailsScreen(),
-//       ),
-//     );
-//   }
-// }
-//
-// class ProductDetailsScreen extends StatefulWidget {
-//   @override
-//   _ProductDetailsScreenState createState() => _ProductDetailsScreenState();
-// }
+            Container(
+              margin: EdgeInsets.all(0.0),
+              padding: EdgeInsets.all(8.0),
+              child: Stack(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Left side - Image
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          width: 100.0,
+                          height: 100.0,
+                          color: Colors.transparent,
+                          child: Image.asset(
+                            'images/Rectangle 9 (13).png',
+                            width: double.maxFinite,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 16.0),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 0.0),
+                                  child: Text(
+                                    'Loop Silicone Strong Magnetic Watch',
+                                    style: TextStyle(
+                                      color: Color(0xFF1B1A1A),
+                                      fontSize: 14,
+                                      fontFamily: 'Plus Jakarta Sans',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.11,
+                                      letterSpacing: 0.07,
+                                    ),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                SizedBox(width: 8.0),
+                              ],
+                            ),
+                            SizedBox(height: 10,
+                            ),
+                            Text(
+                              '\$15.25',
+                              style: TextStyle(
+                                color: Color(0xFF1B1A1A),
+                                fontSize: 12,
+                                fontFamily: 'Plus Jakarta Sans',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                                letterSpacing: 0.06,
+                              ),
+                            ),
+                            SizedBox(height: 10,
+                            ),
+                            Text(
+                              '\$20.00',
+                              style: TextStyle(
+                                color: Color(0xFF6F7384),
+                                fontSize: 10,
+                                fontFamily: 'Plus Jakarta Sans',
+                                fontWeight: FontWeight.w400,
+                                decoration: TextDecoration.lineThrough,
+                                height: 0,
+                                letterSpacing: 0.15,
+                              ),
+                            ),
+                            SizedBox(height: 10,),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  // Handle decrement logic here
+                                },
+                                child: Container(
+                                  width: 120,
+                                  height: 40,
+                                  // : Colors.blue,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        Icons.remove,
+                                        color: Colors.black,
+                                      ),
+                                      SizedBox(width: 8,),
+                                      Text(
+                                        '1',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      SizedBox(width:8),
+                                      Icon(
+                                        Icons.add,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom:70),
+                      child: Checkbox(
+                        value: true,
+                        onChanged: (newValue) {
+                          // Handle checkbox state change
+                          // You can implement your logic here
+                        },
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top:70.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          // Handle delete logic here
+                        },
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            
+            SizedBox(height: 150,),
 
-// class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-//   final PageController _pageController = PageController();
-//   final List<String> imagePaths = [
-//     'images/Rectangle 9 (17).png',
-//     'images/your_image_2.png',
-//     'images/your_image_3.png',
-//     'images/your_image_4.png',
-//     'images/your_image_5.png',
-//   ];
-//   final List<String> circleTexts = [
-//     'XS',
-//     'S',
-//     'M',
-//     'L',
-//     'XL',
-//   ];
-//   int _currentPage = 0;
-//   int quantity = 1;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _pageController.addListener(() {
-//       setState(() {
-//         _currentPage = _pageController.page?.round() ?? 0;
-//       });
-//     });
-//   }
-//
-//   @override
-//   void dispose() {
-//     _pageController.dispose();
-//     super.dispose();
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return CustomScrollView(
-//       slivers: [
-//         SliverAppBar(
-//           expandedHeight: 270.0,
-//           floating: false,
-//           pinned: true,
-//           flexibleSpace: Stack(
-//             alignment: Alignment.bottomCenter,
-//             children: [
-//               PageView.builder(
-//                 controller: _pageController,
-//                 itemCount: imagePaths.length,
-//                 itemBuilder: (context, index) {
-//                   return Image.asset(
-//                     imagePaths[index],
-//                     fit: BoxFit.cover,
-//                     width: double.infinity,
-//                     height: 270.0,
-//                   );
-//                 },
-//               ),
-//               Container(
-//                 width: 100,
-//                 padding: const EdgeInsets.all(5),
-//                 decoration: ShapeDecoration(
-//                   color: Color(0xFFF4F5FD),
-//                   shape: RoundedRectangleBorder(
-//                     borderRadius: BorderRadius.circular(12),
-//                   ),
-//                 ),
-//                 margin: EdgeInsets.only(bottom: 20.0),
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   children: List.generate(
-//                     imagePaths.length,
-//                         (index) => Padding(
-//                       padding: const EdgeInsets.all(4.0),
-//                       child: Container(
-//                         width: 10,
-//                         height: 10,
-//                         decoration: BoxDecoration(
-//                           shape: BoxShape.circle,
-//                           color: _currentPage == index
-//                               ? Colors.red
-//                               : Colors.black,
-//                         ),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//         SliverToBoxAdapter(
-//           child: Container(
-//             height: 600,
-//             decoration: ShapeDecoration(
-//               color: Colors.black.withOpacity(0.5),
-//               shape: RoundedRectangleBorder(
-//                 borderRadius: BorderRadius.only(
-//                   topLeft: Radius.circular(32),
-//                   topRight: Radius.circular(32),
-//                 ),
-//               ),
-//             ),
-//             padding: EdgeInsets.all(16.0),
-//             child: Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 // Rest of your content here
-//                 // ...
-//               ],
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
+
+            Container(
+
+              padding: EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.transparent),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Order Info',
+                        style: TextStyle(
+                          color: Color(0xFF1B1A1A),
+                          fontSize: 16,
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w500,
+                          height: 0.09,
+                          letterSpacing: 0.08,
+                        ),
+                      )
+
+                    ],
+                  ),
+                  SizedBox(height: 20,),
+                  // First line
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Subtotal',
+                        style: TextStyle(
+                          color: Color(0xFF6F7384),
+                          fontSize: 12,
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                          letterSpacing: 0.06,
+                        ),
+                      ),Text(
+                        '\$27.25',
+                        style: TextStyle(
+                          color: Color(0xFF6F7384),
+                          fontSize: 12,
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                          letterSpacing: 0.06,
+                        ),
+                      )
+
+                    ],
+                  ),
+                  SizedBox(height: 8.0), // Add spacing between lines
+
+                  // Second line
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Shipping Cost',
+                        style: TextStyle(
+                          color: Color(0xFF6F7384),
+                          fontSize: 12,
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                          letterSpacing: 0.06,
+                        ),
+                      ),
+                      Text(
+                        '\$0.00',
+                        style: TextStyle(
+                          color: Color(0xFF6F7384),
+                          fontSize: 12,
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w400,
+                          height: 0,
+                          letterSpacing: 0.06,
+                        ),
+                      ),
+                    ],
+                  ),
+                 // Add spacing between lines
+                  SizedBox(height: 18.0),
+                  // Third line
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Total',
+                        style: TextStyle(
+                          color: Color(0xFF1B1A1A),
+                          fontSize: 16,
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w500,
+                          height: 0.09,
+                          letterSpacing: 0.08,
+                        ),
+                      ),
+                      Text(
+                        '\$27.25',
+                        style: TextStyle(
+                          color: Color(0xFF1B1A1A),
+                          fontSize: 16,
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w500,
+                          height: 0.09,
+                          letterSpacing: 0.08,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 60,),
+                  Center(
+                    child: Container(
+                      width: double.maxFinite,
+                      height: 60,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      decoration: ShapeDecoration(
+                        color: Color(0xFF1C1B1B),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Handle button press
+                        },
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.transparent,),
+                            child: Text(
+                          'Checkout (2)',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontFamily: 'Plus Jakarta Sans',
+                            fontWeight: FontWeight.w600,
+                            height: 0,
+                          ),
+                        )
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            )
+
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: CartScreen(),
+  ));
+}

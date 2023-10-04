@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'emptycart.dart';
 void main() {
   runApp(MyApp());
 }
@@ -75,7 +75,7 @@ class CartEmptyScreen extends StatelessWidget {
                 ),
                 child: ElevatedButton(
                     onPressed: () {
-                      // Handle button press
+                      Navigator.pushNamed(context, '/dashboard', arguments: 1);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.transparent,

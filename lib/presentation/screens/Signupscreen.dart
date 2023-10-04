@@ -285,6 +285,7 @@
 //     );
 //   }
 // }
+import 'package:figmaappnew/presentation/screens/OtpScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -311,18 +312,29 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-
-        title: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxWidth: 100,
-            maxHeight: 60,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Container(
+          padding: EdgeInsets.only(top: 8, left: 28), // Customize padding here
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            titleSpacing: 0,
+            automaticallyImplyLeading: false, // Set the title spacing to 0 to move the title to the left corner
+            title: Padding(
+              padding: const EdgeInsets.only(right: 12.0), // Adjust the padding as needed
+              child: Container(
+                width: 100, // Set the desired width
+                height: 50, // Set the desired height
+                child: Image.asset(
+                  'images/quickmart (1).png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+            actions: [], // Add any other actions if needed
           ),
-          child: Image.asset(
-              'images/quickmart (1).png'), // Replace with your image path
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -403,7 +415,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         hintText: 'Enter your full name',
                         filled: true,
                         fillColor: Colors.white,
-                        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                        contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 16),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Color(0xFF21D4B4), width: 1),
                           borderRadius: BorderRadius.circular(12),
@@ -432,10 +444,10 @@ class _SignupScreenState extends State<SignupScreen> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        hintText: 'Enter your full name',
+                        hintText: 'Enter your Email',
                         filled: true,
                         fillColor: Colors.white,
-                        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                        contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 16),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Color(0xFF21D4B4), width: 1),
                           borderRadius: BorderRadius.circular(12),
@@ -461,7 +473,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     SizedBox(height: 8),
                     Container(
                       width: 370,
-                      height: 60,
+                      height: 68,
                       padding: const EdgeInsets.only(
                         top: 16,
                         left: 16,
@@ -497,36 +509,39 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 SizedBox(height: 20),
                 Column(
-                    children:[Container(
-                      width: double.maxFinite,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // Handle button click
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.black,
-                          onPrimary: Colors.white,
-                          elevation: 4,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: BorderSide(color: Color(0xFF1B1A1A), width: 14),
+                    children:[
+                      Container(
+                        width: double.maxFinite,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => OTPScreen()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.black, // Button background color
+                            onPrimary: Colors.white, // Button text color
+                            elevation: 0, // Button elevation
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
                           ),
-                        ),
-                        child: Padding(
+                          child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                             child: Text(
-                              'Create Account',
+                              "Create Account",
                               style: TextStyle(
-                                color: Colors.white,
+
                                 fontSize: 14,
                                 fontFamily: 'Plus Jakarta Sans',
                                 fontWeight: FontWeight.w600,
                                 height: 0,
                               ),
-                            )
+                            ),
+                          ),
                         ),
                       ),
-                    ),
                     ]),
                 SizedBox(height: 20),
                 Container(

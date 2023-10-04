@@ -601,6 +601,7 @@ class _CartScreenState extends State<CartScreen> {
                       )
                     ],
                   ),
+
                   SizedBox(height: 60,),
                   Center(
                     child: Container(

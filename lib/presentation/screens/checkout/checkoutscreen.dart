@@ -71,375 +71,378 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               ),
             ),
           ),
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 14.0),
-                  child: Container(
-                    height: 65,
-                    constraints:
-                    BoxConstraints(maxHeight: 400), // Adjust the maximum height as needed
-                    child: Row(
-                      children: [
-                        _buildStep(0, 'Shipping', 'images/box.png'),
-                        _buildStepperLine(),
-                        _buildStep(1, 'Payment', 'images/card-tick.png'),
-                        _buildStepperLine(),
-                        _buildStep(2, 'Review', 'images/clipboard-tick.png'),
-                      ],
-                    ),
-                  ),
-                ),
-                // Add other widgets below the Stepper
-                SizedBox(height: 30),
-
-                // Add some spacing
-                // Bordered TextFiel
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left:8.0),
-                      child: Text('Full Name',style: TextStyle(
-                        color: Color(0xFF1B1A1A),
-                        fontSize: 14,
-                        fontFamily: 'Plus Jakarta Sans',
-                        fontWeight: FontWeight.w500,
-                        height: 0.11,
-                        letterSpacing: 0.07,
-                      ),),
-                    )
-                  ],
-                ),
-                SizedBox(height: 15,),
-                Container(
-                  width: double.maxFinite, // Adjust the width as needed
-                  height: 60, // Adjust the height as needed
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color(0xFFF4F5FD), // Border color
-                      width: 1, // Border width
-                    ),
-                    borderRadius: BorderRadius.circular(12), // Border radius
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      // labelText: 'Full Name',
-                      hintText: 'Enter a Full Name',
-
-                      border: InputBorder.none, // Remove default border
-                      contentPadding: EdgeInsets.all(10), // Adjust padding as needed
-                    ),
-                  ),
-                ),
-                // Container(
-                //   width: double.maxFinite, // Adjust the width as needed
-                //   height: 60, // Adjust the height as needed
-                //   decoration: BoxDecoration(
-                //     border: Border.all(
-                //       color: Color(0xFFF4F5FD), // Border color
-                //       width: 1, // Border width
-                //     ),
-                //     borderRadius: BorderRadius.circular(12), // Border radius
-                //   ),
-                //   child: Row(
-                //     children: [
-                //       // Dropdown for Country
-                //       Expanded(
-                //         flex: 1,
-                //         child: DropdownButton<String>(
-                //           value: selectedCountry,
-                //           onChanged: (newValue) {
-                //             setState(() {
-                //               selectedCountry = newValue;
-                //             });
-                //           },
-                //           items: countryData.map<DropdownMenuItem<String>>((country) {
-                //             return DropdownMenuItem<String>(
-                //               value: country['image'],
-                //               child: Image.asset(
-                //                 country['image'],
-                //                 width: 26, // Adjust the width as needed
-                //                 height: 20, // Adjust the height as needed
-                //               ),
-                //             );
-                //           }).toList(),
-                //         ),
-                //       ),
-                //
-                //       // Vertical Divider
-                //       VerticalDivider(),
-                //
-                //       // Mobile Number TextField
-                //       Expanded(
-                //         flex: 7,
-                //         child: TextField(
-                //           decoration: InputDecoration(
-                //             hintText: 'Mobile Number',
-                //             border: InputBorder.none, // Remove default border
-                //             contentPadding: EdgeInsets.all(10), // Adjust padding as needed
-                //           ),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left:8.0),
-                      child: Text('Phone Number',style: TextStyle(
-                        color: Color(0xFF1B1A1A),
-                        fontSize: 14,
-                        fontFamily: 'Plus Jakarta Sans',
-                        fontWeight: FontWeight.w500,
-                        height: 0.11,
-                        letterSpacing: 0.07,
-                      ),),
-                    )
-                  ],
-                ),
-                SizedBox(height: 15,),
-                Container(
-                  width: double.maxFinite, // Adjust the width as needed
-                  height: 60, // Adjust the height as needed
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color(0xFFF4F5FD), // Border color
-                      width: 1, // Border width
-                    ),
-                    borderRadius: BorderRadius.circular(12), // Border radius
-                  ),
-                  child: Form(
-                    key: formKey,
-                    child: InternationalPhoneNumberInput(
-                      onInputChanged: (PhoneNumber number) {
-                        phoneNumber = number;
-                      },
-                      initialValue: phoneNumber,
-                      selectorConfig: SelectorConfig(
-                        selectorType: PhoneInputSelectorType.DIALOG,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 14.0),
+                    child: Container(
+                      height: 65,
+                      constraints:
+                      BoxConstraints(maxHeight: 400), // Adjust the maximum height as needed
+                      child: Row(
+                        children: [
+                          _buildStep(0, 'Shipping', 'images/box.png'),
+                          _buildStepperLine(),
+                          _buildStep(1, 'Payment', 'images/card-tick.png'),
+                          _buildStepperLine(),
+                          _buildStep(2, 'Review', 'images/clipboard-tick.png'),
+                        ],
                       ),
-                      inputDecoration: InputDecoration(
-                        hintText: 'Mobile Number',
+                    ),
+                  ),
+                  // Add other widgets below the Stepper
+                  SizedBox(height: 30),
+
+                  // Add some spacing
+                  // Bordered TextFiel
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left:8.0),
+                        child: Text('Full Name',style: TextStyle(
+                          color: Color(0xFF1B1A1A),
+                          fontSize: 14,
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w500,
+                          height: 0.11,
+                          letterSpacing: 0.07,
+                        ),),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 15,),
+                  Container(
+                    width: double.maxFinite, // Adjust the width as needed
+                    height: 60, // Adjust the height as needed
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color(0xFFF4F5FD), // Border color
+                        width: 1, // Border width
+                      ),
+                      borderRadius: BorderRadius.circular(12), // Border radius
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        // labelText: 'Full Name',
+                        hintText: 'Enter a Full Name',
+
                         border: InputBorder.none, // Remove default border
                         contentPadding: EdgeInsets.all(10), // Adjust padding as needed
                       ),
                     ),
                   ),
-                ),
-                SizedBox(height: 20,),
-
-                Container(
-                  width: double.maxFinite, // Adjust the width as needed
-                  height: 60, // Adjust the height as needed
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color(0xFFF4F5FD), // Border color
-                      width: 1, // Border width
-                    ),
-                    borderRadius: BorderRadius.circular(12), // Border radius
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // Container(
+                  //   width: double.maxFinite, // Adjust the width as needed
+                  //   height: 60, // Adjust the height as needed
+                  //   decoration: BoxDecoration(
+                  //     border: Border.all(
+                  //       color: Color(0xFFF4F5FD), // Border color
+                  //       width: 1, // Border width
+                  //     ),
+                  //     borderRadius: BorderRadius.circular(12), // Border radius
+                  //   ),
+                  //   child: Row(
+                  //     children: [
+                  //       // Dropdown for Country
+                  //       Expanded(
+                  //         flex: 1,
+                  //         child: DropdownButton<String>(
+                  //           value: selectedCountry,
+                  //           onChanged: (newValue) {
+                  //             setState(() {
+                  //               selectedCountry = newValue;
+                  //             });
+                  //           },
+                  //           items: countryData.map<DropdownMenuItem<String>>((country) {
+                  //             return DropdownMenuItem<String>(
+                  //               value: country['image'],
+                  //               child: Image.asset(
+                  //                 country['image'],
+                  //                 width: 26, // Adjust the width as needed
+                  //                 height: 20, // Adjust the height as needed
+                  //               ),
+                  //             );
+                  //           }).toList(),
+                  //         ),
+                  //       ),
+                  //
+                  //       // Vertical Divider
+                  //       VerticalDivider(),
+                  //
+                  //       // Mobile Number TextField
+                  //       Expanded(
+                  //         flex: 7,
+                  //         child: TextField(
+                  //           decoration: InputDecoration(
+                  //             hintText: 'Mobile Number',
+                  //             border: InputBorder.none, // Remove default border
+                  //             contentPadding: EdgeInsets.all(10), // Adjust padding as needed
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          'Select Province',
-                          style: TextStyle(
-                            color: Colors.black, // Title text color
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                      DropdownButton<String>(
-                        value: selectedValue,
-                        onChanged: (newValue) {
-                          setState(() {
-                            selectedValue = newValue;
-                          });
-                        },
-                        items: dropdownItems.map((item) {
-                          return DropdownMenuItem<String>(
-                            value: item,
-                            child: Text(
-                              item,
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                        underline: Container(), // Remove the default underline
-                      ),
+                        padding: const EdgeInsets.only(left:8.0),
+                        child: Text('Phone Number',style: TextStyle(
+                          color: Color(0xFF1B1A1A),
+                          fontSize: 14,
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w500,
+                          height: 0.11,
+                          letterSpacing: 0.07,
+                        ),),
+                      )
                     ],
                   ),
-                ),
-                SizedBox(height: 20,),
-
-                Container(
-                  width: double.maxFinite, // Adjust the width as needed
-                  height: 60, // Adjust the height as needed
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color(0xFFF4F5FD), // Border color
-                      width: 1, // Border width
+                  SizedBox(height: 15,),
+                  Container(
+                    width: double.maxFinite, // Adjust the width as needed
+                    height: 60, // Adjust the height as needed
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color(0xFFF4F5FD), // Border color
+                        width: 1, // Border width
+                      ),
+                      borderRadius: BorderRadius.circular(12), // Border radius
                     ),
-                    borderRadius: BorderRadius.circular(12), // Border radius
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          'Select City',
-                          style: TextStyle(
-                            color: Colors.black, // Title text color
-                            fontSize: 14,
-                          ),
+                    child: Form(
+                      key: formKey,
+                      child: InternationalPhoneNumberInput(
+                        onInputChanged: (PhoneNumber number) {
+                          phoneNumber = number;
+                        },
+                        initialValue: phoneNumber,
+                        selectorConfig: SelectorConfig(
+                          selectorType: PhoneInputSelectorType.DIALOG,
+                        ),
+                        inputDecoration: InputDecoration(
+                          hintText: 'Mobile Number',
+                          border: InputBorder.none, // Remove default border
+                          contentPadding: EdgeInsets.all(10), // Adjust padding as needed
                         ),
                       ),
-                      DropdownButton<String>(
-                        value: selectedValue,
-                        onChanged: (newValue) {
-                          setState(() {
-                            selectedValue = newValue;
-                          });
-                        },
-                        items: dropdownItems1.map((item) {
-                          return DropdownMenuItem<String>(
-                            value: item,
-                            child: Text(
-                              item,
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                        underline: Container(), // Remove the default underline
+                    ),
+                  ),
+                  SizedBox(height: 20,),
+
+                  Container(
+                    width: double.maxFinite, // Adjust the width as needed
+                    height: 60, // Adjust the height as needed
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color(0xFFF4F5FD), // Border color
+                        width: 1, // Border width
                       ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 30),
-
-                // Add some spacing
-                // Bordered TextFiel
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left:8.0),
-                      child: Text('Street Address',style: TextStyle(
-                        color: Color(0xFF1B1A1A),
-                        fontSize: 14,
-                        fontFamily: 'Plus Jakarta Sans',
-                        fontWeight: FontWeight.w500,
-                        height: 0.11,
-                        letterSpacing: 0.07,
-                      ),),
-                    )
-                  ],
-                ),
-                SizedBox(height: 15,),
-                Container(
-                  width: double.maxFinite, // Adjust the width as needed
-                  height: 60, // Adjust the height as needed
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color(0xFFF4F5FD), // Border color
-                      width: 1, // Border width
+                      borderRadius: BorderRadius.circular(12), // Border radius
                     ),
-                    borderRadius: BorderRadius.circular(12), // Border radius
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      // labelText: 'Full Name',
-                      hintText: 'Enter Street Address',
-
-                      border: InputBorder.none, // Remove default border
-                      contentPadding: EdgeInsets.all(10), // Adjust padding as needed
-                    ),
-                  ),
-                ),
-                SizedBox(height: 30),
-
-                // Add some spacing
-                // Bordered TextFiel
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left:8.0),
-                      child: Text('Postal Code',style: TextStyle(
-                        color: Color(0xFF1B1A1A),
-                        fontSize: 14,
-                        fontFamily: 'Plus Jakarta Sans',
-                        fontWeight: FontWeight.w500,
-                        height: 0.11,
-                        letterSpacing: 0.07,
-                      ),),
-                    )
-                  ],
-                ),
-                SizedBox(height: 15,),
-                Container(
-                  width: double.maxFinite, // Adjust the width as needed
-                  height: 60, // Adjust the height as needed
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Color(0xFFF4F5FD), // Border color
-                      width: 1, // Border width
-                    ),
-                    borderRadius: BorderRadius.circular(12), // Border radius
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      // labelText: 'Full Name',
-                      hintText: 'Enter Postal code',
-
-                      border: InputBorder.none, // Remove default border
-                      contentPadding: EdgeInsets.all(10), // Adjust padding as needed
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 15),
-                Center(
-                    child: Container(
-                      width: 400, // Set the container's width to occupy the full width
-                      child: TextButton(
-                          onPressed: () {
-                            // Handle button press
-                          },
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.symmetric(vertical: 16.0), // Adjust vertical padding as needed
-                            backgroundColor: Colors.black, // Set transparent background
-                            side: BorderSide(
-                              color: Color(0xFFF4F5FD), // Border color
-                              width: 1.0, // Border width
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0), // Adjust the border radius as needed
-                            ),
-                          ),
-                          child:Text(
-                            'Save',
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                            'Select Province',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black, // Title text color
                               fontSize: 14,
-                              fontFamily: 'Plus Jakarta Sans',
-                              fontWeight: FontWeight.w600,
-                              height: 0,
                             ),
-                          )
-                      ),
-                    )
+                          ),
+                        ),
+                        DropdownButton<String>(
+                          value: selectedValue,
+                          onChanged: (newValue) {
+                            setState(() {
+                              selectedValue = newValue;
+                            });
+                          },
+                          items: dropdownItems.map((item) {
+                            return DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                          underline: Container(), // Remove the default underline
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 20,),
 
-                ),
-                // Add more widgets below the TextField if needed
-              ],
+                  Container(
+                    width: double.maxFinite, // Adjust the width as needed
+                    height: 60, // Adjust the height as needed
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color(0xFFF4F5FD), // Border color
+                        width: 1, // Border width
+                      ),
+                      borderRadius: BorderRadius.circular(12), // Border radius
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                            'Select City',
+                            style: TextStyle(
+                              color: Colors.black, // Title text color
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        DropdownButton<String>(
+                          value: selectedValue,
+                          onChanged: (newValue) {
+                            setState(() {
+                              selectedValue = newValue;
+                            });
+                          },
+                          items: dropdownItems1.map((item) {
+                            return DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                          underline: Container(), // Remove the default underline
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 30),
+
+                  // Add some spacing
+                  // Bordered TextFiel
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left:8.0),
+                        child: Text('Street Address',style: TextStyle(
+                          color: Color(0xFF1B1A1A),
+                          fontSize: 14,
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w500,
+                          height: 0.11,
+                          letterSpacing: 0.07,
+                        ),),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 15,),
+                  Container(
+                    width: double.maxFinite, // Adjust the width as needed
+                    height: 60, // Adjust the height as needed
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color(0xFFF4F5FD), // Border color
+                        width: 1, // Border width
+                      ),
+                      borderRadius: BorderRadius.circular(12), // Border radius
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        // labelText: 'Full Name',
+                        hintText: 'Enter Street Address',
+
+                        border: InputBorder.none, // Remove default border
+                        contentPadding: EdgeInsets.all(10), // Adjust padding as needed
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 30),
+
+                  // Add some spacing
+                  // Bordered TextFiel
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left:8.0),
+                        child: Text('Postal Code',style: TextStyle(
+                          color: Color(0xFF1B1A1A),
+                          fontSize: 14,
+                          fontFamily: 'Plus Jakarta Sans',
+                          fontWeight: FontWeight.w500,
+                          height: 0.11,
+                          letterSpacing: 0.07,
+                        ),),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 15,),
+                  Container(
+                    width: double.maxFinite, // Adjust the width as needed
+                    height: 60, // Adjust the height as needed
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color(0xFFF4F5FD), // Border color
+                        width: 1, // Border width
+                      ),
+                      borderRadius: BorderRadius.circular(12), // Border radius
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        // labelText: 'Full Name',
+                        hintText: 'Enter Postal code',
+
+                        border: InputBorder.none, // Remove default border
+                        contentPadding: EdgeInsets.all(10), // Adjust padding as needed
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 15),
+                  Center(
+                      child: Container(
+                        width: 400, // Set the container's width to occupy the full width
+                        child: TextButton(
+                            onPressed: () {
+                              // Handle button press
+                            },
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.symmetric(vertical: 16.0), // Adjust vertical padding as needed
+                              backgroundColor: Colors.black, // Set transparent background
+                              side: BorderSide(
+                                color: Color(0xFFF4F5FD), // Border color
+                                width: 1.0, // Border width
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0), // Adjust the border radius as needed
+                              ),
+                            ),
+                            child:Text(
+                              'Save',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontFamily: 'Plus Jakarta Sans',
+                                fontWeight: FontWeight.w600,
+                                height: 0,
+                              ),
+                            )
+                        ),
+                      )
+
+                  ),
+                  // Add more widgets below the TextField if needed
+                ],
+              ),
             ),
           ),
         ],

@@ -1,3 +1,4 @@
+import 'package:figmaappnew/presentation/screens/FogetPassword/pwcreate.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,17 +10,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: NewPwScreen(),
+      home: PwsetScreen(),
     );
   }
 }
 
-class NewPwScreen extends StatefulWidget {
+class PwsetScreen extends StatefulWidget {
   @override
-  _NewPwScreenState createState() => _NewPwScreenState();
+  _PwsetScreenState createState() => _PwsetScreenState();
 }
 
-class _NewPwScreenState extends State<NewPwScreen> {
+class _PwsetScreenState extends State<PwsetScreen> {
   bool _showPassword = false;
   TextEditingController _otpController = TextEditingController();
   List<TextEditingController> _otpControllers = List.generate(6, (index) => TextEditingController());
@@ -27,26 +28,77 @@ class _NewPwScreenState extends State<NewPwScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back,color: Colors.black,),
-          onPressed: () {
-            // Handle back button press
-          },
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight+1), // 1 extra for the underline
+        child: Column(
+          children: [
+            AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              leading: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  onPressed: () {
+                    // Handle back button press
+                  },
+                ),
+              ),
+              title: Text(
+                'Forgot Password',
+                style: TextStyle(
+                  color: Color(0xFF1B1A1A),
+                  fontSize: 16,
+                  fontFamily: 'Plus Jakarta Sans',
+                  fontWeight: FontWeight.w500,
+                  height: 1.11,
+                  letterSpacing: 0.07,
+                ),
+              ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 30.0),
+                  child: SizedBox(
+                    width: 136,
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          TextSpan(
+                            text: '03/',
+                            style: TextStyle(
+                              color: Color(0xFF1B1A1A),
+                              fontSize: 14,
+                              fontFamily: 'Plus Jakarta Sans',
+                              fontWeight: FontWeight.w500,
+                              height: 0.11,
+                              letterSpacing: 0.07,
+                            ),
+                          ),
+                          TextSpan(
+                            text: '03',
+                            style: TextStyle(
+                              color: Color(0xFFC0C0C0),
+                              fontSize: 14,
+                              fontFamily: 'Plus Jakarta Sans',
+                              fontWeight: FontWeight.w500,
+                              height: 0.11,
+                              letterSpacing: 0.07,
+                            ),
+                          ),
+                        ],
+                      ),
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                )
+              ],
+            ),
+            Divider(
+              color: Color(0xFFF4F5FD), // Customize the color of the divider
+              height: 1, // Customize the height of the divider
+            ),
+          ],
         ),
-        title:Text(
-        'Create Password',
-        style: TextStyle(
-          color: Color(0xFF1B1A1A),
-          fontSize: 14,
-          fontFamily: 'Plus Jakarta Sans',
-          fontWeight: FontWeight.w500,
-          height: 0.11,
-          letterSpacing: 0.07,
-        ),
-      ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(22.0),
@@ -184,7 +236,11 @@ class _NewPwScreenState extends State<NewPwScreen> {
                   // Make the container take up the full width
                   child: ElevatedButton(
                     onPressed: () {
-                      // Handle button click
+    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Passwordfinal()),
+    );
+
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.black,
@@ -192,13 +248,13 @@ class _NewPwScreenState extends State<NewPwScreen> {
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(color: Color(0xFF1B1A1A), width: 14),
+
                       ),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                       child: Text(
-                        'Proceed',
+                        'Save',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,

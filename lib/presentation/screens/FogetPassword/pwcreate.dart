@@ -1,5 +1,6 @@
 //
- import 'package:flutter/material.dart';
+ import 'package:figmaappnew/presentation/screens/Loginscreen.dart';
+import 'package:flutter/material.dart';
 // class Passwordfinal extends StatefulWidget {
 //   @override
 //   State<Passwordfinal> createState() => _PasswordfinalState();
@@ -186,7 +187,7 @@ class _PasswordfinalState extends State<Passwordfinal> {
         child: Align(
           alignment: Alignment.topCenter,
           child: Padding(
-            padding: const EdgeInsets.all(40.0),
+            padding: const EdgeInsets.all(50.0),
             child: Column(
               children: [
                 Container(
@@ -263,6 +264,10 @@ class _PasswordfinalState extends State<Passwordfinal> {
                       child: ElevatedButton(
                         onPressed: () {
                           // Handle button click
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => LoginScreen()),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.black, // Button background color
@@ -270,13 +275,13 @@ class _PasswordfinalState extends State<Passwordfinal> {
                           elevation: 4, // Button elevation
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
-                            side: BorderSide(color: Color(0xFF1B1A1A), width: 14), // Button border
+                            // Button border
                           ),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 20),
                           child: Text(
-                            "Continue",
+                            "Login",
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,

@@ -1,3 +1,6 @@
+import 'package:figmaappnew/presentation/screens/FogetPassword/forgetemail.dart';
+import 'package:figmaappnew/presentation/screens/Signupscreen.dart';
+import 'package:figmaappnew/presentation/screens/mainpages/dashboardscreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,20 +27,32 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Container(
+          padding: EdgeInsets.only(top: 8, left: 28), // Customize padding here
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            automaticallyImplyLeading: false, // Set this to false to remove the default leading icon
+            titleSpacing: 0, // Set the title spacing to 0 to move the title to the left corner
+            title: Padding(
+              padding: const EdgeInsets.only(right: 12.0), // Adjust the padding as needed
+              child: Container(
+                width: 100, // Set the desired width
+                height: 50, // Set the desired height
+                child: Image.asset(
+                  'images/quickmart (1).png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
 
-        title: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxWidth: 100,
-            maxHeight: 60,
+           // Add any other actions if needed
           ),
-          child: Image.asset(
-              'images/quickmart (1).png'), // Replace with your image path
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
       ),
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(30.0),
           child: Column(
@@ -56,6 +71,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(height: 25),
+              GestureDetector(
+                onTap: (){
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) =>SignupScreen()),
+                  // );
+                  Navigator.pushNamed(context, '/signup');
+                },
+                child:
               Text.rich(
                 TextSpan(
                   children: [
@@ -94,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-              ),
+              ),),
               SizedBox(height: 20),
               // Column(
               //   crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       hintText: 'Enter your full name',
                       filled: true,
                       fillColor: Colors.white,
-                      contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                      contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 16),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Color(0xFF21D4B4), width: 1),
                         borderRadius: BorderRadius.circular(12),
@@ -173,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 8),
                   Container(
                     width: 370,
-                    height: 60,
+                    height: 68,
                     padding: const EdgeInsets.only(
                       top: 16,
                       left: 16,
@@ -190,6 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: TextFormField(
                       obscureText: !_showPassword,
                       decoration: InputDecoration(
+                        // contentPadding: EdgeInsets.symmetric(vertical: 24, horizontal: 16),
                         border: InputBorder.none,
                         hintText: 'Enter your password',
                         suffixIcon: GestureDetector(
@@ -213,7 +238,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: 340,
                 child: TextButton(
                   onPressed: () {
-                    // Handle forgot password action
+                    Navigator.pushNamed(context, '/dashboard');
+
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(left: 221.0),
@@ -234,38 +260,44 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: 25,),
               Column(
-                  children:[ElevatedButton(
-                    onPressed: () {
-                      // Handle button click
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
-                      onPrimary: Colors.white,
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(color: Color(0xFF1B1A1A), width: 14),
+                  children:[
+                    Container(
+                      width: double.maxFinite,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) =>Dashboard()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.black, // Button background color
+                          onPrimary: Colors.white, // Button text color
+                          elevation: 0, // Button elevation
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+
+                              fontSize: 18,
+                              fontFamily: 'Plus Jakarta Sans',
+                              fontWeight: FontWeight.w600,
+                              height: 0,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'Plus Jakarta Sans',
-                            fontWeight: FontWeight.w600,
-                            height: 0,
-                          ),
-                        )
-                    ),
-                  ),
                   ]),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  // Handle button click
+
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.white,

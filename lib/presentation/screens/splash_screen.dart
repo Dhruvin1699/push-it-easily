@@ -1,16 +1,9 @@
 
+import 'package:figmaappnew/presentation/screens/mainpages/dashboardscreen.dart';
+import 'package:figmaappnew/presentation/screens/onboardscreen.dart';
 import 'package:flutter/material.dart';
 
 
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: SplashScreen(),
-//     );
-//   }
-// }
 
 
 
@@ -19,16 +12,15 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     const Duration splashDuration = Duration(seconds: 3);
 
-    // Use Future.delayed to wait for the specified duration.
-    // Future.delayed(splashDuration, () {
-    //   // After the delay, navigate to the next screen.
-    //   Navigator.of(context).pushReplacement(
-    //     MaterialPageRoute(builder: (context) {
-    //       // Replace 'NextScreen' with the screen you want to navigate to.
-    //       return Dashboard();
-    //     }),
-    //   );
-    // });
+    Future.delayed(splashDuration, () {
+      // After the delay, navigate to the next screen.
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) {
+          // Replace 'NextScreen' with the screen you want to navigate to.
+          return OnboardingPage();
+        }),
+      );
+    });
 
     return Scaffold(
       backgroundColor: Colors.transparent, // Set the background to transparent
@@ -45,9 +37,9 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 145,
+            left: 149,
 
-            top: 457, // Adjust the top value to position the text as desired
+            top: 485, // Adjust the top value to position the text as desired
             child: Text(
               'Asia’s No 1 Ecommerce App',
               style: TextStyle(

@@ -1,3 +1,4 @@
+import 'package:figmaappnew/presentation/screens/Loginscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_input_text_field/pin_input_text_field.dart';
 
@@ -24,41 +25,52 @@ class _OTPScreenState extends State<OTPScreen> {
   List<TextEditingController> _otpControllers = List.generate(6, (index) => TextEditingController());
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: IconButton(
-            icon: Icon(Icons.arrow_back,color: Colors.black,),
-            onPressed: () {
-              // Handle back button press
-            },
-          ),
-        ),
-        title: Padding(
-          padding: const EdgeInsets.only(top: 8.0,left: 1.0),
-          child: Text(
-            'Verification Code',
-            style: TextStyle(
-              color: Color(0xFF1B1A1A),
-              fontSize: 16,
-              fontFamily: 'Plus Jakarta Sans',
-              fontWeight: FontWeight.w500,
-              height: 0.11,
-              letterSpacing: 0.07,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight+1), // 1 extra for the underline
+        child: Column(
+          children: [
+            AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              leading: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  onPressed: () {
+                    // Handle back button press
+                  },
+                ),
+              ),
+              title: Padding(
+                padding: const EdgeInsets.only(top: 8.0, left: 0.0,),
+                child: Text(
+                  'Verification Code',
+                  style: TextStyle(
+                    color: Color(0xFF1B1A1A),
+                    fontSize: 16,
+                    fontFamily: 'Plus Jakarta Sans',
+                    fontWeight: FontWeight.w500,
+                    height: 0.11,
+                    letterSpacing: 0.07,
+                  ),
+                ),
+              ),
             ),
-          ),
+            Divider(
+              color: Color(0xFFF4F5FD), // Customize the color of the divider
+              height: 1, // Customize the height of the divider
+            ),
+          ],
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(22.0),
+        padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           // mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+
             Text(
               'Email Verification',
               style: TextStyle(
@@ -147,7 +159,10 @@ class _OTPScreenState extends State<OTPScreen> {
                   // Make the container take up the full width
                   child: ElevatedButton(
                     onPressed: () {
-                      // Handle button click
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.black,
@@ -155,7 +170,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       elevation: 0,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(color: Color(0xFF1B1A1A), width: 14),
+
                       ),
                     ),
                     child: Padding(
@@ -163,7 +178,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       child: Text(
                         'Proceed',
                         style: TextStyle(
-                          color: Colors.white,
+                          // color: Colors.white,
                           fontSize: 14,
                           fontFamily: 'Plus Jakarta Sans',
                           fontWeight: FontWeight.w600,

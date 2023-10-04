@@ -1,4 +1,5 @@
 import 'package:figmaappnew/presentation/screens/Categories/categories.dart';
+import 'package:figmaappnew/presentation/screens/Profile/userprofile.dart';
 import 'package:figmaappnew/presentation/screens/cartscreens/emptycart.dart';
 import 'package:figmaappnew/presentation/screens/mainpages/homescreen.dart';
 import 'package:figmaappnew/presentation/screens/sample.dart';
@@ -42,12 +43,24 @@ class _DashboardState extends State<Dashboard> {
     ),
 
   ];
+  void didChangeDependencies() {
+    super.didChangeDependencies();
 
+    // Retrieve the passed index from route arguments
+    final int? initialIndex = ModalRoute.of(context)?.settings.arguments as int?;
+
+    if (initialIndex != null) {
+      setState(() {
+        _currentIndex = initialIndex;
+      });
+    }
+  }
   final List<Widget> _screens = [
      HomeScreen(),
     CategoriesScreen(),
    CartEmptyScreen(),
     WishEmptyScreen(),
+    ProfileScreen(),
   ];
 
   // Define colors for selected and unselected items
@@ -101,5 +114,17 @@ class _DashboardState extends State<Dashboard> {
       ),
       child: _customIcons[index],
     );
+  }
+}
+Widget _getScreenForIndex(int index) {
+  // Return the appropriate screen based on the index
+  switch (index) {
+    case 0:
+      return HomeScreen();
+    case 1:
+      return CategoriesScreen(); // Replace with your Dashboard index 1 screen
+  // Add more cases for other indices if needed
+    default:
+      return Container(); // Handle unknown index
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -15,15 +14,18 @@ class _SearchScreenState extends State<SearchScreen> {
   void _showFilterBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-        backgroundColor: Colors.transparent,
+      backgroundColor: Colors.transparent,
       builder: (BuildContext context) {
-        return SingleChildScrollView( // Wrap with SingleChildScrollView
+        return SingleChildScrollView(
+          // Wrap with SingleChildScrollView
           child: Container(
-            height: 350, // You can adjust the height or use MediaQuery to make it responsive
+            height:
+                350, // You can adjust the height or use MediaQuery to make it responsive
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.vertical(
-                top: Radius.circular(30), // Adjust the radius for the top corners
+                top: Radius.circular(
+                    30), // Adjust the radius for the top corners
               ),
             ),
             child: Column(
@@ -64,7 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   width: double.infinity,
                   height: 70,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(11.0),
@@ -75,12 +77,13 @@ class _SearchScreenState extends State<SearchScreen> {
                         // You can use the filter values (_filter1, _filter2, etc.) here
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.black, // Background color
+                        primary: Colors.black,
+                        onPrimary: Colors.white// Background color
                       ),
                       child: Text(
                         'Apply Filters',
                         style: TextStyle(
-                          color: Colors.white, // Text color
+                          // color: Colors.white, // Text color
                         ),
                       ),
                     ),
@@ -93,19 +96,42 @@ class _SearchScreenState extends State<SearchScreen> {
       },
     );
   }
+
   //
   Widget buildFilterRow(
-      String text, bool? value, ValueChanged<bool?> onChanged) {
+      String text,
+      bool? value,
+      ValueChanged<bool?> onChanged,
+      ) {
     return Row(
       children: [
         Checkbox(
           value: value,
-          onChanged: onChanged,
-          checkColor: Colors.white,
-          activeColor: Colors.transparent,
+          onChanged: (newValue) {
+            onChanged(newValue);
+            // Update the value of the checkbox in the UI
+            setState(() {
+              value = newValue;
+            });
+          },
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          checkColor: Colors.orange,
+          activeColor: Colors.black,
         ),
         SizedBox(width: 10),
-        Text(text),
+        Text(
+          text,
+          style: TextStyle(
+            color: Color(0xFF1B1A1A),
+            fontSize: 14,
+            fontFamily: 'Plus Jakarta Sans',
+            fontWeight: FontWeight.w500,
+            height: 0.11,
+            letterSpacing: 0.07,
+          ),
+        ),
       ],
     );
   }
@@ -115,39 +141,53 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxWidth: 100,
-            maxHeight: 60,
-          ),
-          child: Image.asset(
-              'images/quickmart (1).png'), // Replace with your image path
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              // Handle the close icon tap action
-              Navigator.pop(context); // Navigate back to the previous screen
-            },
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Icon(
-                Icons.close,
-                color: Colors.black,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Container(
+          padding: EdgeInsets.only(top: 8, left: 28), // Customize padding here
+          child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            titleSpacing: 0,
+            automaticallyImplyLeading: false, // Set the title spacing to 0 to move the title to the left corner
+            title: Padding(
+              padding: const EdgeInsets.only(right: 15.0), // Adjust the padding as needed
+              child: Container(
+                width: 100, // Set the desired width
+                height: 50, // Set the desired height
+                child: Image.asset(
+                  'images/quickmart (1).png',
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
+            actions: [
+              GestureDetector(
+                onTap: () {
+                  // Handle the close icon tap action
+                  Navigator.pop(
+                      context); // Navigate back to the previous screen
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Icon(
+                    Icons.close,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ], // Add any other actions if needed
           ),
-        ],
+        ),
       ),
-      body: Column(
+      body: SingleChildScrollView(child:
+      Column(
         children: [
+          SizedBox(width: 30,),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 18.0),
             child: Container(
-              width: 370,
+              width: 380,
               height: 50,
               decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
@@ -196,22 +236,28 @@ class _SearchScreenState extends State<SearchScreen> {
           SizedBox(height: 25),
           Row(
             children: [
-              Text(
-                'RECENT SEARCH',
-                style: TextStyle(
-                  color: Color(0xFF1B1A1A),
-                  fontSize: 12,
-                  fontFamily: 'Plus Jakarta Sans',
-                  fontWeight: FontWeight.w600,
-                  height: 0,
-                  letterSpacing: 0.06,
+              Padding(
+                padding: const EdgeInsets.only(left: 24.0),
+                child: Text(
+                  'RECENT SEARCH',
+                  style: TextStyle(
+                    color: Color(0xFF1B1A1A),
+                    fontSize: 12,
+                    fontFamily: 'Plus Jakarta Sans',
+                    fontWeight: FontWeight.w600,
+                    height: 0,
+                    letterSpacing: 0.06,
+                  ),
                 ),
               )
             ],
           ),
-          SizedBox(
-              height:
-                  10), // Adjust the spacing between the header and search results
+          Padding(
+            padding: const EdgeInsets.only(left:22.0),
+            child: SizedBox(
+                height:
+                    15),
+          ), // Adjust the spacing between the header and search results
           // Static search results with different text and custom icons
           buildSearchResult("Smart Watches", 'images/send.png'),
           buildSearchResult("Laptops", 'images/send.png'),
@@ -220,7 +266,7 @@ class _SearchScreenState extends State<SearchScreen> {
           buildSearchResult("Mobiles", 'images/send.png'),
           buildSearchResult("Mobilecase", 'images/send.png'),
         ],
-      ),
+      ),),
     );
   }
 
@@ -228,21 +274,27 @@ class _SearchScreenState extends State<SearchScreen> {
     return Column(
       children: [
         ListTile(
-          leading: Text(
-            text,
-            style: TextStyle(
-              color: Color(0xFF1B1A1A),
-              fontSize: 14,
-              fontFamily: 'Plus Jakarta Sans',
-              fontWeight: FontWeight.w500,
-              height: 0.11,
-              letterSpacing: 0.07,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Color(0xFF1B1A1A),
+                fontSize: 14,
+                fontFamily: 'Plus Jakarta Sans',
+                fontWeight: FontWeight.w500,
+                height: 0.11,
+                letterSpacing: 0.07,
+              ),
             ),
           ),
-          trailing: Image.asset(
-            iconPath,
-            width: 24,
-            height: 24,
+          trailing: Padding(
+            padding: const EdgeInsets.only(right: 14.0),
+            child: Image.asset(
+              iconPath,
+              width: 24,
+              height: 24,
+            ),
           ), // Custom icon from image asset
           // Left side text
         ),

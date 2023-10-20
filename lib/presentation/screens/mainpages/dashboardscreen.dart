@@ -2,7 +2,7 @@ import 'package:figmaappnew/presentation/screens/Categories/categories.dart';
 import 'package:figmaappnew/presentation/screens/Profile/userprofile.dart';
 import 'package:figmaappnew/presentation/screens/cartscreens/emptycart.dart';
 import 'package:figmaappnew/presentation/screens/mainpages/homescreen.dart';
-import 'package:figmaappnew/presentation/screens/sample.dart';
+
 import 'package:figmaappnew/presentation/screens/wishlist/emptywish.dart';
 
 import 'package:flutter/material.dart';

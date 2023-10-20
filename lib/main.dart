@@ -27,13 +27,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
         initialRoute: '/splash',
         routes:{
-       '/splash': (context) => SplashScreen(),
+        '/splash': (context) => SplashScreen(),
 
 
 
-          '/signup':(context) =>SignupScreen(),
-          '/login': (context) => LoginScreen(),
-           '/dashboard':(context) =>Dashboard(),
+        '/signup':(context) =>SignupScreen(),
+        '/login': (context) => LoginScreen(),
+        '/dashboard':(context) =>Dashboard(),
            '/home':(context) => HomeScreen(),
            '/catgories':(context) => CategoriesScreen(),
           '/cart':(context)=> CartEmptyScreen(),
